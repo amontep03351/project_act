@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สแกนเข้าร่วมกิจกรรม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+        #videoElement {
+            width: 100%;
+            height: 400px;
+            background-color: #000;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex min-h-screen justify-center items-center">
+
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">สแกนเข้าร่วมกิจกรรม</h2>
+
+        <!-- กรอกรหัสกิจกรรม -->
+        <div class="mb-4">
+            <label for="activityCode" class="block text-gray-700">กรอกรหัสกิจกรรม</label>
+            <input type="text" id="activityCode" class="w-full p-2 border border-gray-300 rounded-md" placeholder="รหัสกิจกรรม">
+        </div>
+
+        <!-- ชื่อกิจกรรม -->
+        <div class="mb-4">
+            <h3 id="activityName" class="text-xl font-semibold text-gray-800">ชื่อกิจกรรม: กิจกรรมสันทนาการ</h3>
+        </div>
+
+        <!-- ส่วนกล้อง -->
+        <div class="mb-4">
+            <video id="videoElement" autoplay></video>
+        </div>
+
+        <!-- ปุ่มเริ่มสแกน -->
+        <div class="mb-4">
+            <button id="startScanBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg w-full hover:bg-blue-700 transition">
+                เริ่มสแกน
+            </button>
+        </div>
+
+        <!-- ข้อความแสดงผล -->
+        <div id="scanResult" class="hidden text-center">
+            <p class="text-green-500 font-semibold">สแกนสำเร็จ!</p>
+            <p class="text-gray-700" id="scannedUser">ผู้สแกน: สมชาย ใจดี</p>
+        </div>
+    </div>
+
+    <script>
+        // ฟังก์ชันเริ่มต้นการเข้าถึงกล้อง
+        async function startCamera() {
+            const video = document.getElementById('videoElement');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing camera: ', err);
+            }
+        }
+
+        // ฟังก์ชันเริ่มสแกน (ตัวอย่างการสแกนใบหน้า)
+        function startScan() {
+            // ตัวอย่างการสแกน (ในที่นี้คือการแสดงผลลัพธ์)
+            document.getElementById('scanResult').classList.remove('hidden');
+            document.getElementById('startScanBtn').classList.add('hidden');
+            document.getElementById('scannedUser').innerText = 'ผู้สแกน: สมชาย ใจดี'; // ตัวอย่างชื่อผู้สแกน
+        }
+
+        // เริ่มต้นกล้องเมื่อโหลดหน้า
+        window.onload = () => {
+            startCamera();
+            document.getElementById('startScanBtn').addEventListener('click', startScan);
+        };
+    </script>
+
+</body>
+</html>
