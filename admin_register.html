@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการลงทะเบียน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-600 text-white flex flex-col">
+        <div class="p-6 text-center">
+            <h1 class="text-2xl font-bold">ระบบลงทะเบียนเข้าร่วมกิจกรรม</h1>
+        </div>
+        <nav class="flex-1">
+            <ul>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="dashboard_admin.html" class="block">Dashboard</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_stu.html" class="block">ข้อมูลนักศึกษา</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_teacher.html" class="block">อาจารย์</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_activity.html" class="block">กิจกรรม</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_new.html" class="block">ข่าวประชาสัมพันธ์</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_log.html" class="block">ประวัติเข้าร่วมกิจกรรม</a></li>
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="admin_register.html" class="block">ประวัติการลงทะเบียน</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Top Bar -->
+        <header class="bg-white shadow-md flex justify-between items-center px-6 py-4">
+            <h2 class="text-lg font-semibold text-gray-800">ประวัติการลงทะเบียน</h2>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+                    <span class="text-gray-800 font-medium">admin@example.com</span>
+                </div>
+                <button 
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                    onclick="logout()">
+                    ออกจากระบบ
+                </button>
+            </div>
+        </header>
+
+        <!-- Registration History Table -->
+        <main class="p-6 bg-gray-100 flex-1">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">ประวัติการลงทะเบียน</h3>
+            <table id="registrationTable" class="display w-full">
+                <thead>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>วันที่ลงทะเบียน</th>
+                        <th>เวลา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>สมชาย</td>
+                        <td>ใจดี</td>
+                        <td>2024-01-10</td>
+                        <td>09:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>นางสาวสวย</td>
+                        <td>ใจดี</td>
+                        <td>2024-02-12</td>
+                        <td>10:30 AM</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>พจน์</td>
+                        <td>พลอย</td>
+                        <td>2024-03-15</td>
+                        <td>02:00 PM</td>
+                    </tr>
+                    <!-- เพิ่มข้อมูลที่นี่ -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Initializing DataTables
+        $(document).ready(function() {
+            $('#registrationTable').DataTable();
+        });
+
+        // ฟังก์ชันออกจากระบบ
+        function logout() {
+            if (confirm("คุณต้องการออกจากระบบหรือไม่?")) {
+                window.location.href = "index.html"; // เปลี่ยนเป็นลิงก์หน้าเข้าสู่ระบบจริง
+            }
+        }
+    </script>
+</body>
+</html>

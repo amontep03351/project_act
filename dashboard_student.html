@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-600 text-white flex flex-col">
+        <div class="p-6 text-center">
+            <h1 class="text-2xl font-bold">ระบบลงทะเบียนเข้าร่วมกิจกรรม</h1>
+        </div>
+        <nav class="flex-1">
+            <ul>  
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="new_stu.html" class="block">ข่าวประชาสัมพันธ์</a></li> 
+                <li class="px-6 py-2 hover:bg-blue-700"><a href="log_stu.html" class="block">ประวัติการลงทะเบียน</a></li> 
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Top Bar -->
+        <header class="bg-white shadow-md flex justify-between items-center px-6 py-4">
+            <h2 class="text-lg font-semibold text-gray-800">Dashboard</h2>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+                    <span class="text-gray-800 font-medium">student@example.com</span>
+                </div>
+                <button 
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                    onclick="logout()">
+                    ออกจากระบบ
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="p-6 bg-gray-100 flex-1">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">ยินดีต้อนรับสู่ Dashboard</h3>
+            <p class="text-gray-600">เลือกเมนูทางด้านซ้ายเพื่อดำเนินการต่อ</p>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function logout() {
+            if (confirm("คุณต้องการออกจากระบบหรือไม่?")) {
+                window.location.href = "index.html"; // เปลี่ยนเป็นลิงก์หน้าเข้าสู่ระบบจริง
+            }
+        }
+    </script>
+</body>
+</html>

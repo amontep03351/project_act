@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <!-- Logo and Website Name -->
+        <div class="text-center mb-6">
+            <img src="https://via.placeholder.com/100" alt="Logo" class="mx-auto w-24 h-24">
+            <h1 class="text-2xl font-bold text-gray-800 mt-2">ระบบลงทะเบียนเข้าร่วมกิจกรรม</h1>
+        </div>
+
+        <!-- Login Form -->
+        <h2 class="text-xl font-semibold text-gray-700 text-center mb-4">เข้าสู่ระบบ</h2>
+        <form id="loginForm">
+            <div class="mb-4">
+                <label for="email" class="block text-gray-600 font-medium mb-2">อีเมล</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="กรอกอีเมล" 
+                    required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-600 font-medium mb-2">รหัสผ่าน</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="กรอกรหัสผ่าน" 
+                    required>
+            </div>
+            <button 
+                type="submit" 
+                class="w-full bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">
+                เข้าสู่ระบบ
+            </button>
+        </form>
+
+        <!-- Registration Link -->
+        <div class="text-center mt-4">
+            <p class="text-gray-600">ยังไม่มีบัญชี? 
+                <a href="register.html" class="text-blue-500 font-medium hover:underline">ลงทะเบียน</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // ป้องกันการรีเฟรชหน้า
+
+            // ตัวอย่างข้อมูลผู้ใช้
+            const users = [
+                { email: "student@example.com", password: "student123", role: "student" },
+                { email: "teacher@example.com", password: "teacher123", role: "teacher" },
+                { email: "admin@example.com", password: "admin123", role: "admin" },
+            ];
+
+            // รับค่าจากฟอร์ม
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // ตรวจสอบข้อมูลผู้ใช้
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // นำไปหน้า Dashboard ตามบทบาท
+                alert(`เข้าสู่ระบบสำเร็จ! กำลังนำไปยัง ${user.role} Dashboard...`);
+                if (user.role === "student") {
+                    window.location.href = "dashboard_student.html";
+                } else if (user.role === "teacher") {
+                    window.location.href = "dashboard_teacher.html";
+                } else if (user.role === "admin") {
+                    window.location.href = "dashboard_admin.html";
+                }
+            } else {
+                alert("อีเมลหรือรหัสผ่านไม่ถูกต้อง!");
+            }
+        });
+    </script>
+</body>
+</html>
